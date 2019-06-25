@@ -1,0 +1,11 @@
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\bin\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.deps.json
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\bin\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.runtimeconfig.json
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\bin\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.runtimeconfig.dev.json
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\bin\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.dll
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\bin\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.pdb
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\obj\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.csprojAssemblyReference.cache
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\obj\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.csproj.CoreCompileInputs.cache
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\obj\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.AssemblyInfoInputs.cache
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\obj\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.AssemblyInfo.cs
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\obj\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.dll
+D:\Repositorio\UNCO\Proyecto POO\ProyectoCompSaltoHipico\obj\Debug\netcoreapp2.1\ProyectoCompSaltoHipico.pdb
