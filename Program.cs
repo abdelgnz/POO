@@ -51,7 +51,7 @@ namespace ProyectoCompSaltoHipico
             categoriaExperto.RegistrarParticipacion(  binomioB1,   29,  colObstaculosPasadosBinomioB1);
 
             categoriaExperto.ElaborarRanking();
-           
+           //26062019
         }
     }
 }
