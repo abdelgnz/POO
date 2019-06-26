@@ -12,21 +12,22 @@ namespace ProyectoCompSaltoHipico
         static void Main(string[] args)
         {
             // Obstaculos
-            Obstaculo obs1 = new Obstaculo(pId: "OBS1", pPuntaje: 20, pTipoObstaculo: TipoObstaculo.simple);
-            Obstaculo obs2 = new Obstaculo(pId: "OBS2", pPuntaje: 30, pTipoObstaculo: TipoObstaculo.exigente);
-            Obstaculo obs3 = new Obstaculo(pId: "OBS3", pPuntaje: 40, pTipoObstaculo: TipoObstaculo.simple);
-            Obstaculo obs4 = new Obstaculo(pId: "OBS4", pPuntaje: 50, pTipoObstaculo: TipoObstaculo.exigente);
-            Obstaculo obs5 = new Obstaculo(pId: "OBS5", pPuntaje: 60, pTipoObstaculo: TipoObstaculo.exigente);
-            Obstaculo obs6 = new Obstaculo(pId: "OBS6", pPuntaje: 70, pTipoObstaculo: TipoObstaculo.simple);
-            Obstaculo obs7 = new Obstaculo(pId: "OBS7", pPuntaje: 80, pTipoObstaculo: TipoObstaculo.exigente);
-            Obstaculo obs8 = new Obstaculo(pId: "OBS8", pPuntaje: 90, pTipoObstaculo: TipoObstaculo.exigente);
+            Obstaculo obs1 = new ObstaculoSimple(pId: "OBS1", pPuntaje: 20);
+            Obstaculo obs2 = new ObstaculoExigente(pId: "OBS2", pPuntaje: 30);
+            Obstaculo obs3 = new ObstaculoSimple(pId: "OBS3", pPuntaje: 40);
+            Obstaculo obs4 = new ObstaculoExigente(pId: "OBS4", pPuntaje: 50);
+            Obstaculo obs5 = new ObstaculoExigente(pId: "OBS5", pPuntaje: 60);
+            Obstaculo obs6 = new ObstaculoSimple(pId: "OBS6", pPuntaje: 70);
+            Obstaculo obs7 = new ObstaculoExigente(pId: "OBS7", pPuntaje: 80);
+            Obstaculo obs8 = new ObstaculoExigente(pId: "OBS8", pPuntaje: 90);
 
             // Jinete
             Jinete jineteManuel = new Jinete("MANUEL", "J1");
             Caballo caballoTormenta = new Caballo("TORMENTA");
             Binomio binomioB1 = new Binomio( "B1", jineteManuel, caballoTormenta);
 
-            CategoriaSaltoHipico categoriaExperto = new Experto( pTiempoEsperado: 30);
+            EvaluarParticipante evaluarParticipanteVersion1 = new EvaluarParticipanteVersion1();
+            CategoriaSaltoHipico categoriaExperto = new Experto(  30, evaluarParticipanteVersion1);
 
             categoriaExperto.AddObstaculo( obs1, pOrden: 1 );
             categoriaExperto.AddObstaculo( obs5, pOrden: 2 );

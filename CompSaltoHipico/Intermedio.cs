@@ -8,7 +8,7 @@ namespace ModuloCompetenciaSaltoHipico
 {
     public class Intermedio : CategoriaSaltoHipico
     {
-        public Intermedio(int pTiempoEsperado) : base(pTiempoEsperado)
+        public Intermedio(int pTiempoEsperado, EvaluarParticipante pEvaluarParticipante) : base(pTiempoEsperado, pEvaluarParticipante)
         {
             this.Descripcion = "INTERMEDIO"; // categoria
         }

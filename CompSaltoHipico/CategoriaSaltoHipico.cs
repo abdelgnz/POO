@@ -14,11 +14,20 @@ namespace ModuloCompetenciaSaltoHipico
         public int TiempoEsperadoRecorrido { get; set; }
         public string Descripcion { get; set; }
 
-        public CategoriaSaltoHipico(int pTiempoEspRecorridoEnSegundos)
+        EvaluarParticipante _evaluarParticipante; // 
+
+        public CategoriaSaltoHipico(int pTiempoEspRecorridoEnSegundos, EvaluarParticipante pEvaluarParticipante)
         {
             this.recorrido = new List<Recorrido>();
             this.TiempoEsperadoRecorrido = pTiempoEspRecorridoEnSegundos;
             this.participantes = new List<Binomio>();
+
+            this._evaluarParticipante = pEvaluarParticipante;
+        }
+
+        public void SetEvaluarParticipante(EvaluarParticipante pEvaluarParticipante)
+        {
+            this._evaluarParticipante = pEvaluarParticipante;
         }
 
         public void AddObstaculo(Obstaculo pObstaculo, int pOrden)
@@ -43,64 +52,15 @@ namespace ModuloCompetenciaSaltoHipico
                 unBinomio.AddObstaculoPasado( new ObstaculoPasado( obs, pair.Value ) );
             }
         }
-        ResultadoParticipante EvaluarParticipante(Binomio pBinomio)
-        {
-            ResultadoParticipante resultadoParticipante = new ResultadoParticipante();
-            resultadoParticipante.Binomio = pBinomio;
-            resultadoParticipante.TiempoEmpleado = pBinomio.TiempoEmpleado;
-
-            if (pBinomio.ObstaculosPasados.Count != this.recorrido.Count)
-                resultadoParticipante.Descalificado = true; // descalificado por no recorrer todo los OBS
-
-            int k = 0;
-
-            foreach (var rec in this.recorrido.OrderBy(w => w.Orden))
-            {
-                if (pBinomio.ObstaculosPasados[k].Obstaculo.Id != rec.Obstaculo.Id)
-                {
-                    resultadoParticipante.Descalificado = true; //  por no seguir el orden los OBS
-                    break;
-                }
-
-                k++;
-            }
-
-            // Los obstáculos pueden ser exigentes o simples. En caso de que un binomio derribe un obstáculo exigente,
-            // se considera 3 faltas. Los obstáculos simples al derribarlos sólo determinan 1 falta. 
-            List<ObstaculoPasado> obstaculosPasadosConDerribo = 
-                pBinomio.ObstaculosPasados.Where(w => w.Estado == EstadoObstaculoPasado.derribo).ToList();
-
-            int faltasXPasoObstaculoExigente = 
-                obstaculosPasadosConDerribo.Where( 
-                    w => w.Obstaculo.TipoObstaculo == TipoObstaculo.exigente).ToList().Count * Obstaculo.NumFaltasXderriboObsExigente; 
-                    
-            int faltasXPasoObstaculoSimple =
-                obstaculosPasadosConDerribo.Where( 
-                    w => w.Obstaculo.TipoObstaculo == TipoObstaculo.simple).ToList().Count * Obstaculo.NumFaltasXderriboObsSimple; 
-
-            resultadoParticipante.TotalFaltas = faltasXPasoObstaculoExigente + faltasXPasoObstaculoSimple;
-            // si los competidores exceden el tiempo esperado de recorrido son sancionados. Por cada
-            // segundo de exceso de tiempo se considera una falta
-            if (pBinomio.TiempoEmpleado > this.TiempoEsperadoRecorrido)
-            {
-                int diferencia = pBinomio.TiempoEmpleado - this.TiempoEsperadoRecorrido;
-
-                resultadoParticipante.TotalFaltas = resultadoParticipante.TotalFaltas + diferencia * 1;
-            }
-
-            // calculamos los puntos obtenidos por el binomio
-            resultadoParticipante.TotalPuntos = 
-                pBinomio.ObstaculosPasados.Where( w => w.Estado == EstadoObstaculoPasado.exito ).Sum( w => w.Obstaculo.Puntaje );
-
-            return resultadoParticipante;
-        }
 
         public void ElaborarRanking()
         {
             List<ResultadoParticipante> resultadoParticipantes = new List<ResultadoParticipante>();
 
             foreach (var regBinomio in this.participantes)
-                resultadoParticipantes.Add(EvaluarParticipante(regBinomio));
+                resultadoParticipantes.Add( 
+                    _evaluarParticipante.Evaluar( this.recorrido, this.TiempoEsperadoRecorrido,regBinomio ) );
+                    
 
             // Al final de la competencia se arma el ranking de cada categoría. Para generarlo se tiene en
             // cuenta el puntaje, a igual puntaje se considera el tiempo empleado, y a igual tiempo se

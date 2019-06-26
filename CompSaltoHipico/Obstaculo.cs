@@ -6,22 +6,18 @@ using System.Text;
 
 namespace ModuloCompetenciaSaltoHipico
 {
-	public enum TipoObstaculo { simple, exigente, no_definido }
-    public class Obstaculo
+    public abstract class Obstaculo
     {
 		public string Id { get; set; }
 		public int Puntaje { get; set; }
-        public TipoObstaculo TipoObstaculo { get; set; } 
-		public static int NumFaltasXderriboObsSimple = 1;
-		public static int NumFaltasXderriboObsExigente = 3;
 
-		public Obstaculo(string pId, int pPuntaje, TipoObstaculo pTipoObstaculo)
+		public Obstaculo(string pId, int pPuntaje)
         {
 			this.Id = pId;
 			this.Puntaje = pPuntaje;
-			this.TipoObstaculo = pTipoObstaculo;
         }
 		
+		public abstract int getFaltasXfalla();
 		public void Imprimir()
 		{
 			Console.WriteLine( "|       {0}           {1}                |", this.Id, this.Puntaje.ToString() );

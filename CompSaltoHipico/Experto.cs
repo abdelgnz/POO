@@ -9,7 +9,7 @@ namespace ModuloCompetenciaSaltoHipico
 {
     public class Experto : CategoriaSaltoHipico
     {
-        public Experto(int pTiempoEsperado) : base(pTiempoEsperado)
+        public Experto(int pTiempoEsperado, EvaluarParticipante pEvaluarParticipante) : base(pTiempoEsperado, pEvaluarParticipante)
         {
             this.Descripcion = "EXPERTO"; // categoria
         }
