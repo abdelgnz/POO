@@ -66,7 +66,7 @@ namespace ModuloCompetenciaSaltoHipico
             // cuenta el puntaje, a igual puntaje se considera el tiempo empleado, y a igual tiempo se
             // decide por menor cantidad de fallas.
             var clasificados = resultadoParticipantes.Where(
-                w => w.Descalificado == false).OrderBy(w => w.TiempoEmpleado).ThenBy(w => w.TotalFaltas).ToList();
+                w => w.Descalificado == false).OrderBy( w=> w.TotalPuntos ).ThenBy(w => w.TiempoEmpleado).ThenBy(w => w.TotalFaltas).ToList();
 
             Console.WriteLine("");
             Console.WriteLine("            ***  Ranking - Categoria " + this.Descripcion + "  ***");
